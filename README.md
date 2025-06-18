@@ -2,6 +2,7 @@
 - [ ] Take Resources.
 - [ ] Open all and install all dependencies with `npm i`
 - [ ] Make repository github repository.
+- [ ] Config DB name.
 - [ ] After that start with adding static files and css.
 - [ ] Adding Home Page and View.
 - [ ] Rendering Main Layout And Title and Making navigation links.
@@ -14,3 +15,11 @@
 - [ ] Time to render Register view and Login view.
 - [ ] Register User. And sign up.
 - [ ] Adding Model in this case: 'Play' and if User model is different make it correct.
+- [ ] Show register view.
+- [ ] Refactor register template add method names and value where is needed.
+- [ ] Make data take by application demand. Refactor all antries where is needed.
+- [ ] Try to register first user.
+- [ ] Insert needed redirect to home page or to login.
+- [ ] Add Login and watch out about names fields make sure you have added.
+- [ ] Try if all Register User and Login user work as well logout.
+- [ ] After success redirect to home page.

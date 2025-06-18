@@ -4,8 +4,8 @@ import jwt from "jsonwebtoken";
 import { jwtSecret } from "../utils/userUtils.js";
 
 export default {
-  async register(username, email, password) {
-    const user = await User.findOne({ email });
+  async register(username, password) {
+    const user = await User.findOne({ username });
 
     if (user) {
       throw new Error("User already exist!");
@@ -13,13 +13,12 @@ export default {
 
     return User.create({
       username,
-      email,
       password,
     });
   },
 
-  async login(email, password) {
-    const user = await User.findOne({ email });
+  async login(username, password) {
+    const user = await User.findOne({ username });
 
     if (!user) {
       throw new Error("User or email are not Valid");
@@ -34,7 +33,6 @@ export default {
     const payload = {
       id: user.id,
       username: user.username,
-      email: user.email,
     };
 
     const token = jwt.sign(payload, jwtSecret, { expiresIn: "4h" });

@@ -9,18 +9,16 @@ function auth(req, res, next) {
     return next();
   }
 
-  const { id, email, username } = jwt.verify(token, jwtSecret);
+  const { id, username } = jwt.verify(token, jwtSecret);
 
   req.user = {
     id,
-    email,
     username,
     isAuthenticated: true,
   };
 
   res.locals.user = {
     id,
-    email,
     username,
     isAuthenticated: true,
   };

@@ -11,16 +11,16 @@ userController.get("/register", authMiddleware.guard, (req, res) => {
 });
 
 userController.post("/register", authMiddleware.guard, async (req, res) => {
-  const { username, email, password, rePass } = req.body;
+  const { username, password, rePass } = req.body;
 
   try {
     if (password !== rePass) {
       throw new Error("Password mismach!");
     }
 
-    await userService.register(username, email, password, rePass);
+    await userService.register(username, password, rePass);
 
-    // const token = await userService.login(email, password);
+    // const token = await userService.login( password);
 
     // res.cookie(AUTH_COOKIE, token);
 
@@ -28,7 +28,7 @@ userController.post("/register", authMiddleware.guard, async (req, res) => {
   } catch (err) {
     const error = errorMsg(err);
 
-    res.render("user/register", { username, email, error });
+    res.render("user/register", { username, error });
   }
 });
 
@@ -36,17 +36,17 @@ userController.get("/login", authMiddleware.guard, (req, res) => {
   res.render("user/login");
 });
 userController.post("/login", authMiddleware.guard, async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
   try {
-    const token = await userService.login(email, password);
+    const token = await userService.login(username, password);
 
     res.cookie(AUTH_COOKIE, token);
 
     res.redirect("/");
   } catch (err) {
     const error = errorMsg(err);
-    res.render("user/login", { email, error });
+    res.render("user/login", { username, error });
   }
 });
 

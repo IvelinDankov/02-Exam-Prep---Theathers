@@ -23,7 +23,7 @@ function hbsCofig(app) {
 }
 
 async function mongooseConfig() {
-  let dbName = "Glow";
+  let dbName = "Theather";
 
   try {
     await mongoose.connect("mongodb://localhost/", { dbName: dbName });

@@ -1,21 +1,26 @@
 {{setTitle "Register Page"}}
 
-<section class="form-container">
+<form method="post">
   <h2>Register</h2>
-  <form method="post">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="username" value="{{username}}" />
+  <div class="on-dark">
+    <label for="username">Username:</label>
+    <input
+      type="text"
+      placeholder="Steven"
+      name="username"
+      value="{{username}}"
+    />
+  </div>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" value="{{email}}" />
-
+  <div class="on-dark">
     <label for="password">Password:</label>
-    <input type="password" id="password" name="password" />
+    <input type="password" placeholder="********" name="password" />
+  </div>
 
-    <label for="password">Repeat Password:</label>
-    <input type="password" id="re-password" name="rePass" />
+  <div class="on-dark">
+    <label for="repeatPassword">Repeat Password:</label>
+    <input type="password" placeholder="********" name="rePass" />
+  </div>
 
-    <button type="submit">Register</button>
-  </form>
-  <p>Already have an account? <a href="/users/login">Login here</a>.</p>
-</section>
+  <button class="btn" type="submit">Register</button>
+</form>
