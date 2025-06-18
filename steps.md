@@ -1,4 +1,12 @@
 - [ ] Take Static files.
 - [ ] Take Resources.
-- [ ] Open all and install all dependencies  with `npm i`
-- [ ] Make repository github repository. 
+- [ ] Open all and install all dependencies with `npm i`
+- [ ] Make repository github repository.
+- [ ] After that start with adding static files and css.
+- [ ] Adding Home Page and View.
+- [ ] Rendering Main Layout And Title and Making navigation links.
+- [ ] Removing old partials and unneccessary view.
+- [ ] In main layout adding title conditionally.
+- [ ] Body with triple moustache.
+- [ ] And Take home page with settled title.
+- [ ]

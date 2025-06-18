@@ -1,54 +1,41 @@
+
 <html lang="en">
 
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      {{#if pageTitle}}
-        {{pageTitle}}
-      {{else}}
-        GlowAlchemy
-      {{/if}}
+      {{#if pageTitle}} {{pageTitle}} {{else}} Express Exam {{/if}}
     </title>
-    <link rel="stylesheet" href="/styles/styles.css" />
+    <link href="/static/css/style.css" type="text/css" rel="stylesheet" />
   </head>
 
   <body>
-    <header>
-      <nav>
 
-        <ul>
-          <li>{{#if user}}
-              {{user.username}}
-            {{/if}}</li>
-          <li><a href="/">Home</a></li>
-          <li><a href="/cosmetics/catalog">Products</a></li>
-          <li><a href="/cosmetics/search">Search</a></li>
-          {{#if user.isAuthenticated}}
-            <li><a href="/cosmetics/create">Add Product</a></li>
-            <li><a href="/users/logout">Logout</a></li>
-          {{else}}
-            <li><a href="/users/login">Login</a></li>
-            <li><a href="/users/register">Register</a></li>
+    <nav>
+      <a>Theater</a>
+      <ul>
+        <li><a href="#">Home </a></li>
+        <li><a href="#">Logout</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Register</a></li>
+      </ul>
+    </nav>
 
-          {{/if}}
+    {{#if error}}
+      <section class="notifications error">
+        <p> {{error}} </p>
+      </section>
+    {{/if}}
 
-        </ul>
-      </nav>
-    </header>
     <main>
-
-      {{#if error}}
-        <div class="error-container">
-          <p> {{error}} </p>
-        </div>
-      {{/if}}
       {{{body}}}
-
     </main>
     <footer>
-      <p>&copy; 2024 GlowAlchemy. All rights reserved.</p>
+      <div>© 2020
+        <a href="https://softuni.bg/courses/js-back-end">JS Back-End</a>
+      </div>
     </footer>
+
   </body>
 
 </html>
