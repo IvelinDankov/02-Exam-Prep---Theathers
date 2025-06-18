@@ -23,3 +23,13 @@
 - [ ] Add Login and watch out about names fields make sure you have added.
 - [ ] Try if all Register User and Login user work as well logout.
 - [ ] After success redirect to home page.
+
+2. Creating new Teather Play.
+
+- [ ] Adding playController. Connect to Routes.
+- [ ] Make get request and render create view.
+- [ ] Redact create view with methods and values
+- [ ] Don't forget to hang a title.
+- [ ] Go to controller and add post request get data and send to service to work with.
+- [ ] Call create service with user who created the post and data body.
+- [ ] Return created new Play and look in DB if is correctly created.

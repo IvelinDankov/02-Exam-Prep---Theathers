@@ -9,7 +9,7 @@ const playSchema = new Schema({
   description: {
     type: String,
     required: true,
-    maxLength: 50,
+    maxLength: 500,
   },
   imageUrl: {
     type: String,
@@ -17,7 +17,7 @@ const playSchema = new Schema({
   },
   isPublic: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   createdAt: {
     type: Date,
