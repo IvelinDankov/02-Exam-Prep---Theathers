@@ -14,4 +14,3 @@
 - [ ] Time to render Register view and Login view.
 - [ ] Register User. And sign up.
 - [ ] Adding Model in this case: 'Play' and if User model is different make it correct.
-- [ ]
