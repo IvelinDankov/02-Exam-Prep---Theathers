@@ -1,0 +1,54 @@
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {{#if pageTitle}}
+        {{pageTitle}}
+      {{else}}
+        GlowAlchemy
+      {{/if}}
+    </title>
+    <link rel="stylesheet" href="/styles/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+
+        <ul>
+          <li>{{#if user}}
+              {{user.username}}
+            {{/if}}</li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/cosmetics/catalog">Products</a></li>
+          <li><a href="/cosmetics/search">Search</a></li>
+          {{#if user.isAuthenticated}}
+            <li><a href="/cosmetics/create">Add Product</a></li>
+            <li><a href="/users/logout">Logout</a></li>
+          {{else}}
+            <li><a href="/users/login">Login</a></li>
+            <li><a href="/users/register">Register</a></li>
+
+          {{/if}}
+
+        </ul>
+      </nav>
+    </header>
+    <main>
+
+      {{#if error}}
+        <div class="error-container">
+          <p> {{error}} </p>
+        </div>
+      {{/if}}
+      {{{body}}}
+
+    </main>
+    <footer>
+      <p>&copy; 2024 GlowAlchemy. All rights reserved.</p>
+    </footer>
+  </body>
+
+</html>

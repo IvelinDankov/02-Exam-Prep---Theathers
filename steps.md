@@ -1,0 +1,4 @@
+- [ ] Take Static files.
+- [ ] Take Resources.
+- [ ] Open all and install all dependencies  with `npm i`
+- [ ] Make repository github repository. 
