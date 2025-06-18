@@ -9,4 +9,9 @@
 - [ ] In main layout adding title conditionally.
 - [ ] Body with triple moustache.
 - [ ] And Take home page with settled title.
+- [ ] Clean up homeController and added product to make error disappear, clean all module errors.
+- [ ] Render Home page.
+- [ ] Time to render Register view and Login view.
+- [ ] Register User. And sign up.
+- [ ] Adding Model in this case: 'Play' and if User model is different make it correct.
 - [ ]
