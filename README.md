@@ -41,4 +41,5 @@
 - [ ] When login user click on details to go to details page.
 - [ ] Start adding routs to details in Controller.
 - [ ] Find in service one Play and give to template. to populate all data.
--
+- [ ] Make all details is owner to see delete and edit and if not owner to see like btn. but if you already like it. You should see message.
+- [ ]

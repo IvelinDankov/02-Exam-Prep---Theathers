@@ -39,4 +39,9 @@ export default {
 
     return token;
   },
+  update(userId, playId) {
+    return User.findByIdAndUpdate(userId, {
+      $addToSet: { likedPlays: playId },
+    });
+  },
 };
