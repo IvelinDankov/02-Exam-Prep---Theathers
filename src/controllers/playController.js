@@ -26,10 +26,23 @@ playController.get("/:playId/like", async (req, res) => {
   const playId = req.params.playId;
   const userId = req.user?.id;
 
-  await playService.update(playId, userId);
-  await userService.update(userId, playId);
+  try {
+    const play = await playService.getOne(playId);
 
-  res.redirect(`/plays/${playId}/details`);
+    const isOwner = String(play.owner) === userId;
+
+    if (isOwner) {
+      throw new Error("You are owner of the play. You cannot like this Play!");
+    }
+
+    await playService.update(playId, userId);
+    await userService.update(userId, playId);
+
+    res.redirect(`/plays/${playId}/details`);
+  } catch (err) {
+    const error = errorMsg(err);
+    res.render("404", { error });
+  }
 });
 
 playController.get("/:playId/details", async (req, res) => {
@@ -50,9 +63,19 @@ playController.get("/:playId/edit", async (req, res) => {
   const playId = req.params.playId;
   const userId = req.user?.id;
 
-  const play = await playService.getOne(playId);
+  try {
+    const play = await playService.getOne(playId);
 
-  res.render("play/edit-theater", { play });
+    const isOwner = String(play.owner) === userId;
+    if (!isOwner) {
+      throw new Error("You aren't the owner of the play! Cannot edit");
+    }
+
+    res.render("play/edit-theater", { play });
+  } catch (err) {
+    const error = errorMsg(err);
+    res.render("404", { error });
+  }
 });
 playController.post("/:playId/edit", async (req, res) => {
   const playId = req.params.playId;
@@ -66,10 +89,23 @@ playController.post("/:playId/edit", async (req, res) => {
 });
 playController.get("/:playId/delete", async (req, res) => {
   const playId = req.params.playId;
+  const userId = req.user.id;
 
-  await playService.remove(playId);
+  try {
+    const play = await playService.getOne(playId);
+    const isOwner = String(play.owner) === userId;
 
-  res.redirect("/");
+    if (!isOwner) {
+      throw new Error("You cannot delete this play! Only owner can do it.");
+    }
+
+    await playService.remove(playId);
+
+    res.redirect("/");
+  } catch (err) {
+    const error = errorMsg(err);
+    res.render("404", { error });
+  }
 });
 
 export default playController;
