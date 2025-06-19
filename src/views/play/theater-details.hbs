@@ -3,7 +3,7 @@
   <section class="details">
     <h1>Theater title: {{play.title}}</h1>
     <div>
-      <img src="{{play.imageUrl}}" style="width: 50%;" />
+      <img src="{{play.imageUrl}}" style="width: 50%; height: 300px" />
     </div>
   </section>
 
@@ -12,8 +12,8 @@
     <p>{{play.description}}</p>
     {{#if isOwner}}
       <div class="buttons">
-        <a class="btn delete" href="">Delete</a>
-        <a class="btn edit" href="">Edit</a>
+        <a class="btn delete" href="/plays/{{play.id}}/delete">Delete</a>
+        <a class="btn edit" href="/plays/{{play.id}}/edit">Edit</a>
         {{else}}
         {{#if liked}}
         <span class="liked">You have already liked this play!</span>

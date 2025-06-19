@@ -22,6 +22,16 @@ playController.post("/create", async (req, res) => {
   }
 });
 
+playController.get("/:playId/like", async (req, res) => {
+  const playId = req.params.playId;
+  const userId = req.user?.id;
+
+  await playService.update(playId, userId);
+  await userService.update(userId, playId);
+
+  res.redirect(`/plays/${playId}/details`);
+});
+
 playController.get("/:playId/details", async (req, res) => {
   const playId = req.params.playId;
   const userId = req.user?.id;
@@ -36,14 +46,30 @@ playController.get("/:playId/details", async (req, res) => {
   }
 });
 
-playController.get("/:playId/like", async (req, res) => {
+playController.get("/:playId/edit", async (req, res) => {
   const playId = req.params.playId;
   const userId = req.user?.id;
 
-  await playService.update(playId, userId);
-  await userService.update(userId, playId);
+  const play = await playService.getOne(playId);
+
+  res.render("play/edit-theater", { play });
+});
+playController.post("/:playId/edit", async (req, res) => {
+  const playId = req.params.playId;
+  const playData = req.body;
+
+  const isPublic = playData.isPublic === "on" ? true : false;
+
+  await playService.updateOne(playId, playData, isPublic);
 
   res.redirect(`/plays/${playId}/details`);
+});
+playController.get("/:playId/delete", async (req, res) => {
+  const playId = req.params.playId;
+
+  await playService.remove(playId);
+
+  res.redirect("/");
 });
 
 export default playController;
