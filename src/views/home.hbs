@@ -16,25 +16,36 @@
 </section>
 
 <section>
+  {{#if user.isAuthenticated}}
+  <div class="aux">
+    <h1>Available Plays</h1>
+    <div class="home-buttons">
+      <a class="btn create-play" href="/plays/create">Create Theater</a>
+      <a class="btn create-play" href="/sort-by-date">Sort by Date</a>
+      <a class="btn create-play" href="/sort-by-likes">Sort by Likes</a>
+    </div>
+  </div>
+  {{else}}
   <h1>Best Rated Plays</h1>
+  {{/if}}
   <div class="theaters-container">
     {{#each plays}}
-      <div>
-        <div class="home-image">
-          <img src="{{imageUrl}}" alt="{{title}}" width="400" />
-        </div>
-        <div class="info">
-          <h4>{{title}}</h4>
-          {{#if ../user.isAuthenticated}}
-          <div class="info-buttons">
-            <a class="btn details" href="/plays/{{id}}/details">Details</a>
-            <span class="likes">{{likes.length}} likes</span>
-          </div>
-          {{/if}}
-        </div>
+    <div>
+      <div class="home-image">
+        <img src="{{imageUrl}}" alt="{{title}}" width="400" />
       </div>
+      <div class="info">
+        <h4>{{title}}</h4>
+        {{#if ../user.isAuthenticated}}
+        <div class="info-buttons">
+          <a class="btn details" href="/plays/{{id}}/details">Details</a>
+          <span class="likes">{{likes.length}} likes</span>
+        </div>
+        {{/if}}
+      </div>
+    </div>
     {{else}}
-      <h4>No plays yet...</h4>
+    <h4>No plays yet...</h4>
     {{/each}}
 
     <!-- <h4>No plays yet...</h4> -->

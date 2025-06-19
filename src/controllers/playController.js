@@ -2,17 +2,24 @@ import { Router } from "express";
 import errorMsg from "../utils/errorMsg.js";
 import playService from "../services/playService.js";
 import userService from "../services/userService.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
 
 const playController = Router();
 
-playController.get("/create", (req, res) => {
+playController.get("/create", authMiddleware.isAuth, (req, res) => {
   res.render("play/create");
 });
-playController.post("/create", async (req, res) => {
+playController.post("/create", authMiddleware.isAuth, async (req, res) => {
   const playData = req.body;
   const userId = req.user.id;
 
   try {
+    // if (playData.title === "") {
+    //   throw new Error("Title should not be empty");
+    // } else if (playData.description === "") {
+    //   throw new Error("Description should not be empty");
+    // }
+
     let isPublic = playData.isPublic === "on" ? true : false;
     await playService.create(playData, isPublic, userId);
     res.redirect("/");
@@ -22,7 +29,7 @@ playController.post("/create", async (req, res) => {
   }
 });
 
-playController.get("/:playId/like", async (req, res) => {
+playController.get("/:playId/like", authMiddleware.isAuth, async (req, res) => {
   const playId = req.params.playId;
   const userId = req.user?.id;
 
@@ -59,7 +66,7 @@ playController.get("/:playId/details", async (req, res) => {
   }
 });
 
-playController.get("/:playId/edit", async (req, res) => {
+playController.get("/:playId/edit", authMiddleware.isAuth, async (req, res) => {
   const playId = req.params.playId;
   const userId = req.user?.id;
 
@@ -77,16 +84,25 @@ playController.get("/:playId/edit", async (req, res) => {
     res.render("404", { error });
   }
 });
-playController.post("/:playId/edit", async (req, res) => {
-  const playId = req.params.playId;
-  const playData = req.body;
+playController.post(
+  "/:playId/edit",
+  authMiddleware.isAuth,
+  async (req, res) => {
+    const playId = req.params.playId;
+    const playData = req.body;
 
-  const isPublic = playData.isPublic === "on" ? true : false;
+    const isPublic = playData.isPublic === "on" ? true : false;
 
-  await playService.updateOne(playId, playData, isPublic);
+    try {
+      await playService.updateOne(playId, playData, isPublic);
 
-  res.redirect(`/plays/${playId}/details`);
-});
+      res.redirect(`/plays/${playId}/details`);
+    } catch (err) {
+      const error = errorMsg(err);
+      res.render("play/edit-theater", { error, data: playData });
+    }
+  }
+);
 playController.get("/:playId/delete", async (req, res) => {
   const playId = req.params.playId;
   const userId = req.user.id;

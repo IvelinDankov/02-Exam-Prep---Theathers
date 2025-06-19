@@ -3,17 +3,17 @@ import { Schema, model, Types } from "mongoose";
 const playSchema = new Schema({
   title: {
     type: String,
-    required: true,
+    required: [true, "Title is required!"],
     unique: true,
   },
   description: {
     type: String,
-    required: true,
+    required: [true, "Description is required!"],
     maxLength: 500,
   },
   imageUrl: {
     type: String,
-    required: true,
+    required: [true, "ImageUrl is required!"],
   },
   isPublic: {
     type: Boolean,
@@ -21,7 +21,6 @@ const playSchema = new Schema({
   },
   createdAt: {
     type: Date,
-    required: true,
   },
   likes: [
     {

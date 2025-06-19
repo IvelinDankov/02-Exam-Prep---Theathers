@@ -5,13 +5,20 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: [true, "Username is required!"],
-    minLength: [2, "Min Length is 2 characters"],
-    maxlength: [20, "Max allowed character are 20"],
+    minLength: [3, "Min Length is 3 characters"],
+    validate: [
+      /^[A-Za-z0-9]+$/,
+      "Username should contain only english letters and digits. No white spaces are allowed!",
+    ],
   },
   password: {
     type: String,
     required: [true, "Password is required!"],
-    minLength: [4, "Password must be at least 4 charachers."],
+    minLength: [3, "Password must be at least 3 charachers."],
+    validate: [
+      /^[A-Za-z0-9]+$/,
+      "Password should contain only english letters and digits. No white spaces are allowed!",
+    ],
   },
   likedPlays: [
     {
