@@ -9,14 +9,11 @@ playController.get("/create", (req, res) => {
 });
 playController.post("/create", async (req, res) => {
   const playData = req.body;
-
-  let isPublic = false;
+  const userId = req.user.id;
 
   try {
-    if (playData.isPublic === "") {
-      isPublic = true;
-    }
-    await playService.create(playData, isPublic);
+    let isPublic = playData.isPublic === "on" ? true : false;
+    await playService.create(playData, isPublic, userId);
     res.redirect("/");
   } catch (err) {
     const error = errorMsg(err);

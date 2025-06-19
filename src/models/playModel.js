@@ -29,6 +29,10 @@ const playSchema = new Schema({
       ref: "User",
     },
   ],
+  owner: {
+    type: Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const Play = model("Play", playSchema);

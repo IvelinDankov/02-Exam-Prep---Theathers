@@ -25,6 +25,12 @@
         </div>
         <div class="info">
           <h4>{{title}}</h4>
+          {{#if ../user.isAuthenticated}}
+          <div class="info-buttons">
+            <a class="btn details" href="/plays/{{id}}/details">Details</a>
+            <span class="likes">6 likes</span>
+          </div>
+          {{/if}}
         </div>
       </div>
     {{else}}

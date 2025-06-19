@@ -33,3 +33,12 @@
 - [ ] Go to controller and add post request get data and send to service to work with.
 - [ ] Call create service with user who created the post and data body.
 - [ ] Return created new Play and look in DB if is correctly created.
+- [ ] To make checkbox to work properly add on to be true or false.
+
+3. Details Page.
+
+- [ ] Let's start with view make link in home page to be visible on user available.
+- [ ] When login user click on details to go to details page.
+- [ ] Start adding routs to details in Controller.
+- [ ] Find in service one Play and give to template. to populate all data.
+-
